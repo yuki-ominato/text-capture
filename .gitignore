@@ -1,1 +1,8 @@
 *.png
+*.spec
+
+/build
+/dist
+/Tesseract-OCR
+/venv
+/distribution

@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 from PIL import ImageGrab
 import pytesseract
@@ -13,7 +15,22 @@ import pyperclip  # クリップボードにコピー（標準ではないがよ
 ctypes.windll.user32.SetProcessDPIAware()
 
 # Tesseractパスを適宜修正
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+# 実行ファイルと同じディレクトリにある Tesseract を使用する
+base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+tesseract_path = os.path.join(base_path, "Tesseract-OCR", "tesseract.exe")
+
+# tesseract_path:C:\Users\minat\AppData\Local\Temp\_MEI76002\Tesseract-OCR\tesseract.exe
+# tesseract_path:C:\Users\minat\Yuki\application\text-capture\Tesseract-OCR\tesseract.exe
+
+
+if not os.path.exists(tesseract_path):
+    print("tesseract_path:" + tesseract_path)
+    print("❌ Tesseract not found.")
+    # os._exit(1)
+
+pytesseract.pytesseract.tesseract_cmd = tesseract_path
 
 class ScreenOCRApp:
     def __init__(self):
@@ -78,13 +95,16 @@ class ScreenOCRApp:
 def run_ocr():
     threading.Thread(target=ScreenOCRApp).start()
 
+# アプリケーション終了処理
+def quit_app():
+    print("🔚 プログラムを終了します")
+    os._exit(0)
+
 # ホットキー登録（Ctrl + Shift + O）
 keyboard.add_hotkey('ctrl+shift+o', run_ocr)
+keyboard.add_hotkey("ctrl+shift+q", quit_app)
 
 print("🔍 Ctrl + Shift + O を押すとOCRモードが起動します")
-print("❌ Ctrl + C で終了")
+print("❌ Ctrl + Shift + Q で終了")
 
 keyboard.wait()  # 永久に待機
-
-# text = pytesseract.image_to_string(img, lang="eng")
-
