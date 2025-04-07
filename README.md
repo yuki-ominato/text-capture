@@ -18,7 +18,7 @@ Tesseract OCRをバックエンドに使用しています。
 
 【セットアップ手順】
 1. Tesseract OCRをインストールしてください。
-   ダウンロード先（公式）：https://github.com/tesseract-ocr/tesseract
+   ダウンロード先　https://github.com/UB-Mannheim/tesseract/wiki
 
 2. `tesseract.exe` のパスをスクリプト内の `TESSERACT_PATH` に設定してください。
    例：
