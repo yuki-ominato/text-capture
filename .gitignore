@@ -1,5 +1,6 @@
 *.png
 *.spec
+*.zip
 
 /build
 /dist

@@ -4,33 +4,15 @@ import tkinter as tk
 from PIL import ImageGrab
 import pytesseract
 import ctypes
-import keyboard  # ホットキー用
-import threading  # 別スレッドでGUIを起動
-import pyperclip  # クリップボードにコピー（標準ではないがよく使われる）
-
-# 追加ライブラリのインストールが必要:
-# pip install keyboard pyperclip
+import keyboard
+import threading
+import pyperclip
 
 # DPIスケーリング無効化（座標のズレ防止）
 ctypes.windll.user32.SetProcessDPIAware()
 
 # Tesseractパスを適宜修正
-# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
-# 実行ファイルと同じディレクトリにある Tesseract を使用する
-base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-tesseract_path = os.path.join(base_path, "Tesseract-OCR", "tesseract.exe")
-
-# tesseract_path:C:\Users\minat\AppData\Local\Temp\_MEI76002\Tesseract-OCR\tesseract.exe
-# tesseract_path:C:\Users\minat\Yuki\application\text-capture\Tesseract-OCR\tesseract.exe
-
-
-if not os.path.exists(tesseract_path):
-    print("tesseract_path:" + tesseract_path)
-    print("❌ Tesseract not found.")
-    # os._exit(1)
-
-pytesseract.pytesseract.tesseract_cmd = tesseract_path
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 class ScreenOCRApp:
     def __init__(self):

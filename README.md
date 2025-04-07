@@ -1,20 +1,34 @@
 OCR Text Capture Tool for Windows
 
-【使い方】
-1. text-capture.exe をダブルクリックして起動（バックグラウンドで常駐）
-2. Ctrl + Shift + O を押して画面上の文字を選択・OCR
-3. 自動的にクリップボードにコピーされます
-4. Ctrl + Shift + Q でアプリを終了します
+【ソフト名】
+TextCapture - OCR文字認識ツール（英語のみ対応）
 
-【同梱物】
-- ocr_app.exe（アプリ本体）
-- Tesseract-OCR フォルダ（英語OCRエンジン）
+【概要】
+このツールは、画面上の任意の範囲を選択して英語のテキストをOCRで読み取る簡易アプリです。
+Tesseract OCRをバックエンドに使用しています。
 
-【注意】
-- Windows Defender などが警告を出す場合がありますが、自己ビルドの `.exe` のため問題ありません
+【必要な環境】
+- Python 3.8 以降
+- 以下のPythonライブラリ：
+  - pytesseract
+  - pillow
+  - keyboard
+  - pyperclip
+  - pyautogui
 
-【免責事項】
-本ソフトウェアは無保証で提供されています。
+【セットアップ手順】
+1. Tesseract OCRをインストールしてください。
+   ダウンロード先（公式）：https://github.com/tesseract-ocr/tesseract
 
-本ソフトウェアの使用によって生じたいかなる損害・トラブル・データの損失等に対しても、製作者は一切の責任を負いません。  
-ご使用はすべて自己責任でお願いいたします。
+2. `tesseract.exe` のパスをスクリプト内の `TESSERACT_PATH` に設定してください。
+   例：
+   ```python
+   TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+
+
+本ツールはGoogleのTesseract OCRを利用しています。TesseractはApache License 2.0のもと配布されています。
+
+ユーザーは、Tesseractのライセンスに従ってご利用ください。
+
+本ソフトを利用することによって生じた問題や損害について、開発者は一切の責任を負いかねます。
